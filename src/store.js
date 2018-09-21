@@ -24,5 +24,16 @@ export const store = {
 		tasks.map(
 			task => (task.id === taskId ? (task.edit = true) : (task.edit = false))
 		);
+	},
+	updateTask(colId, taskId, taskTitle) {
+		const col = this.state.Seed.find(col => col.id === colId);
+		const taskIndex = col.tasks.findIndex(task => task.id === taskId);
+		col.tasks[taskIndex].title = taskTitle;
+		col.tasks[taskIndex].edit = false;
+	},
+	deleteTask(colId, taskId) {
+		const col = this.state.Seed.find(col => col.id === colId);
+		const taskIndex = col.tasks.findIndex(task => task.id === taskId);
+		col.tasks.splice(taskIndex, 1);
 	}
 };
