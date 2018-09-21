@@ -14,5 +14,15 @@ export const store = {
 	addTask(taskTitle) {
 		const tasks = this.getActiveColumn().tasks;
 		tasks.push({ id: tasks.length + 1, title: taskTitle, edit: false });
+	},
+	editTask(colId, taskId) {
+		const index = this.state.Seed.findIndex(col => col.id === colId);
+		const tasks = this.state.Seed[index].tasks;
+		const taskIndex = tasks.findIndex(task => task.id === taskId);
+		tasks[taskIndex].edit = true;
+		//reset or update the edit property to false of other tasks
+		tasks.map(
+			task => (task.id === taskId ? (task.edit = true) : (task.edit = false))
+		);
 	}
 };
