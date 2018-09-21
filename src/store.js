@@ -10,5 +10,9 @@ export const store = {
 	},
 	getActiveColumn() {
 		return this.state.Seed.find(col => col.active === true);
+	},
+	addTask(taskTitle) {
+		const tasks = this.getActiveColumn().tasks;
+		tasks.push({ id: tasks.length + 1, title: taskTitle, edit: false });
 	}
 };
